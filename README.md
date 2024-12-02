@@ -3,7 +3,7 @@
 for backend
 
 npx create-strapi-app@latest test-backend
-npm install strapi-plugin-io
+npm install socket.io
 
 for frontend
 
