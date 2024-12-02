@@ -12,15 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product"
-    },
     "user": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "Items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "ecommerce.items"
     }
   }
 }

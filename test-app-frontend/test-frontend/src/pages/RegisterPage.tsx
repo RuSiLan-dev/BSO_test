@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRegisterMutation } from '../api/apiSlice'; // Replace with your RTK Query slice
+import { useRegisterMutation, useCreateCartMutation } from '../api/apiSlice'; // Replace with your RTK Query slice
 import { useNavigate } from 'react-router-dom';
 import '../styles/RegisterPage.css';
 
@@ -8,6 +8,7 @@ const RegisterPage: React.FC = () => {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [register, { isLoading, error }] = useRegisterMutation();
+    const [registerCart ] = useCreateCartMutation();
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -15,12 +16,13 @@ const RegisterPage: React.FC = () => {
         try {
             const result = await register({ username, email, password }).unwrap();
             console.log('Register success:', result);
-
+            const cart = await registerCart({user:result.user.id}).unwrap();
             // Save the JWT token (example: to localStorage)
             localStorage.setItem('token', result.jwt);
+            localStorage.setItem('user', JSON.stringify(result.user));
 
             // Redirect user to the home or dashboard page
-            navigate('/cart');
+            navigate('/product-page');
         } catch (err) {
             //console.error('Register failed:', err);
             alert("username or email address is already taken.");

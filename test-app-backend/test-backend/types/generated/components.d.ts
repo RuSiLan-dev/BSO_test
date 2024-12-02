@@ -8,6 +8,17 @@ export interface EcommerceCart extends Struct.ComponentSchema {
   attributes: {};
 }
 
+export interface EcommerceItems extends Struct.ComponentSchema {
+  collectionName: 'components_ecommerce_items';
+  info: {
+    displayName: 'Items';
+  };
+  attributes: {
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    quantity: Schema.Attribute.Decimal;
+  };
+}
+
 export interface EcommerceProduct extends Struct.ComponentSchema {
   collectionName: 'components_ecommerce_products';
   info: {
@@ -28,6 +39,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'ecommerce.cart': EcommerceCart;
+      'ecommerce.items': EcommerceItems;
       'ecommerce.product': EcommerceProduct;
     }
   }

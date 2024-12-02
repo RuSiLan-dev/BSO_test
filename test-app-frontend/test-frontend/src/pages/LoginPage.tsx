@@ -6,7 +6,7 @@ import '../styles/LoginPage.css';
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
- const [login, { isLoading, error }] = useLoginMutation();
+  const [login, { isLoading, error }] = useLoginMutation();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,9 +17,9 @@ const LoginPage: React.FC = () => {
 
       // Save the JWT token (example: to localStorage)
       localStorage.setItem('token', result.jwt);
-
+      localStorage.setItem('user', JSON.stringify(result.user));
       // Redirect user to the home or dashboard page
-      navigate('/cart');
+      navigate('/product-page');
     } catch (err) {
       console.error('Login failed:', err);alert(err);
     }
