@@ -14,7 +14,8 @@ npm install socket.io-client
 npm install bootstrap @popperjs/core sass
 npm install jquery
 
-
+for db
+test-app-backend/test-backend/data.db
 
 # Server
 HOST=0.0.0.0
